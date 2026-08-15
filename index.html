@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#f5f5f7">
+
+    <title>我的投資資產</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <header class="page-header">
+            <div>
+                <p class="subtitle">資產追蹤</p>
+                <h1>我的投資資產</h1>
+            </div>
+
+            <button id="manageButton" class="icon-button" type="button">
+                ⋯
+            </button>
+        </header>
+
+
+        <!-- =========================
+             總資產
+        ========================== -->
+
+        <section class="total-card">
+
+            <p class="card-label">目前總資產</p>
+
+            <h2 id="totalAssets">NT$ 0</h2>
+
+            <div class="profit-row">
+                <span>總損益</span>
+                <strong id="profit">NT$ 0</strong>
+            </div>
+
+            <div class="profit-row">
+                <span>報酬率</span>
+                <strong id="returnRate">0.00%</strong>
+            </div>
+
+            <p class="valuation-note">
+                未賣出的股票目前以「持股成本」計入總資產，因此總損益只會反映已實現損益。
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             摘要
+        ========================== -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>淨投入</span>
+                <strong id="netDeposit">NT$ 0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>現金</span>
+                <strong id="cash">NT$ 0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>持股成本</span>
+                <strong id="stockValue">NT$ 0</strong>
+            </div>
+
+        </section>
+
+
+        <button
+            id="addButton"
+            class="add-button"
+            type="button"
+        >
+            ＋ 新增紀錄
+        </button>
+
+
+        <!-- =========================
+             目前持股
+        ========================== -->
+
+        <section class="holdings">
+
+            <div class="section-title-row">
+                <h3>目前持股</h3>
+                <span id="holdingCount" class="section-count">0 檔</span>
+            </div>
+
+            <div
+                id="holdingList"
+                class="empty"
+            >
+                尚無持股
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             最近紀錄
+        ========================== -->
+
+        <section class="records">
+
+            <div class="section-title-row">
+                <h3>最近紀錄</h3>
+                <span id="recordCount" class="section-count">0 筆</span>
+            </div>
+
+            <div
+                id="recordList"
+                class="empty"
+            >
+                尚無紀錄
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         新增 / 編輯紀錄
+    ========================== -->
+
+    <div id="modal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    新增紀錄
+                </h2>
+
+                <button
+                    id="closeButton"
+                    class="close-button"
+                    type="button"
+                    aria-label="關閉"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="transactionForm">
+
+                <label for="type">
+                    類型
+                </label>
+
+                <select
+                    id="type"
+                    required
+                >
+                    <option value="deposit">入金</option>
+                    <option value="withdraw">出金</option>
+                    <option value="buy">買入股票</option>
+                    <option value="sell">賣出股票</option>
+                </select>
+
+
+                <div id="stockNameField">
+
+                    <label for="stockName">
+                        股票名稱
+                    </label>
+
+                    <input
+                        id="stockName"
+                        type="text"
+                        maxlength="40"
+                        list="stockSuggestions"
+                        autocomplete="off"
+                        placeholder="例如：台積電"
+                    >
+
+                    <datalist id="stockSuggestions"></datalist>
+
+                </div>
+
+
+                <div id="amountField">
+
+                    <label
+                        for="amount"
+                        id="amountLabel"
+                    >
+                        金額
+                    </label>
+
+                    <input
+                        id="amount"
+                        type="number"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="例如：50000"
+                        required
+                    >
+
+                </div>
+
+
+                <div id="sellCostField">
+
+                    <label for="sellCost">
+                        賣出部分的原始成本
+                    </label>
+
+                    <input
+                        id="sellCost"
+                        type="number"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="例如：18000"
+                    >
+
+                    <p class="field-hint">
+                        這不是賣出收到的錢，而是這次賣掉的股票原本花了多少成本。
+                    </p>
+
+                </div>
+
+
+                <label for="date">
+                    日期
+                </label>
+
+                <input
+                    id="date"
+                    type="date"
+                    required
+                >
+
+
+                <label for="note">
+                    備註
+                </label>
+
+                <input
+                    id="note"
+                    type="text"
+                    maxlength="100"
+                    placeholder="選填"
+                >
+
+
+                <div id="formError" class="form-error" hidden></div>
+
+
+                <div class="form-buttons">
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                        class="cancel-button"
+                    >
+                        取消
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+                        儲存
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         資料管理
+    ========================== -->
+
+    <div id="manageModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>資料管理</h2>
+
+                <button
+                    id="closeManageButton"
+                    class="close-button"
+                    type="button"
+                    aria-label="關閉"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div class="manage-actions">
+
+                <button
+                    id="backupButton"
+                    class="secondary-button"
+                    type="button"
+                >
+                    備份 JSON
+                </button>
+
+                <button
+                    id="csvButton"
+                    class="secondary-button"
+                    type="button"
+                >
+                    匯出 CSV
+                </button>
+
+                <button
+                    id="importButton"
+                    class="secondary-button"
+                    type="button"
+                >
+                    匯入備份
+                </button>
+
+                <input
+                    id="importFile"
+                    type="file"
+                    accept=".json,application/json"
+                    hidden
+                >
+
+                <button
+                    id="resetButton"
+                    class="danger-button"
+                    type="button"
+                >
+                    清空所有資料
+                </button>
+
+            </div>
+
+            <p class="manage-note">
+                這個版本的資料主要存在目前瀏覽器的本機儲存空間。正式開始使用後，建議定期下載 JSON 備份。
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
