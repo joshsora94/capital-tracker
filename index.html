@@ -1,78 +1,34 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
-
-    <meta
-        name="theme-color"
-        content="#f5f5f7"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#f5f5f7">
     <title>我的投資資產</title>
-
-    <link
-        rel="manifest"
-        href="manifest.json"
-    >
-
-    <link
-        rel="apple-touch-icon"
-        href="icons/icon-192.png"
-    >
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
-
 <main class="app">
 
-
-    <!-- =========================
-         標題
-    ========================== -->
-
     <header class="page-header">
-
         <div>
-
-            <p class="subtitle">
-                資產追蹤
-            </p>
-
-            <h1>
-                我的投資資產
-            </h1>
-
+            <p class="subtitle">資產追蹤</p>
+            <h1>我的投資資產</h1>
         </div>
-
 
         <button
             id="manageButton"
             class="icon-button"
             type="button"
+            aria-label="資料管理"
         >
             ⋯
         </button>
-
     </header>
 
-
-    <!-- =========================
-         帳戶總資產
-    ========================== -->
 
     <section class="total-card">
 
@@ -84,119 +40,53 @@
             NT$ 0
         </h2>
 
-
         <div class="profit-row">
-
-            <span>
-                總損益
-            </span>
-
-            <strong id="profit">
-                NT$ 0
-            </strong>
-
+            <span>總損益</span>
+            <strong id="profit">NT$ 0</strong>
         </div>
 
-
         <div class="profit-row">
-
-            <span>
-                總報酬率
-            </span>
-
-            <strong id="returnRate">
-                0.00%
-            </strong>
-
+            <span>總報酬率</span>
+            <strong id="returnRate">0.00%</strong>
         </div>
-
 
         <p class="valuation-note">
-            尚未賣出的股票以持股成本計算，因此目前損益主要反映已實現的投資損益。
+            尚未賣出的股票目前以持股成本計入帳戶資產，所以首頁損益主要反映已實現損益。
         </p>
 
     </section>
 
 
-    <!-- =========================
-         資產摘要
-    ========================== -->
-
     <section class="stats four-stats">
 
-
         <div class="stat-card">
-
-            <span>
-                累積入金
-            </span>
-
-            <strong id="totalDeposit">
-                NT$ 0
-            </strong>
-
+            <span>累積入金</span>
+            <strong id="totalDeposit">NT$ 0</strong>
         </div>
 
-
         <div class="stat-card">
-
-            <span>
-                累積出金
-            </span>
-
-            <strong id="totalWithdraw">
-                NT$ 0
-            </strong>
-
+            <span>累積出金</span>
+            <strong id="totalWithdraw">NT$ 0</strong>
         </div>
 
-
         <div class="stat-card">
-
-            <span>
-                現金
-            </span>
-
-            <strong id="cash">
-                NT$ 0
-            </strong>
-
+            <span>現金</span>
+            <strong id="cash">NT$ 0</strong>
         </div>
 
-
         <div class="stat-card">
-
-            <span>
-                持股成本
-            </span>
-
-            <strong id="stockValue">
-                NT$ 0
-            </strong>
-
+            <span>持股成本</span>
+            <strong id="stockValue">NT$ 0</strong>
         </div>
 
     </section>
 
-
-    <!-- 淨投入 -->
 
     <section class="net-card">
-
-        <span>
-            目前淨投入
-        </span>
-
-        <strong id="netDeposit">
-            NT$ 0
-        </strong>
-
+        <span>目前淨投入</span>
+        <strong id="netDeposit">NT$ 0</strong>
     </section>
 
-
-    <!-- =========================
-         新增紀錄
-    ========================== -->
 
     <button
         id="addButton"
@@ -207,27 +97,17 @@
     </button>
 
 
-    <!-- =========================
-         目前持股
-    ========================== -->
-
     <section class="holdings">
 
         <div class="section-title-row">
-
-            <h3>
-                目前持股
-            </h3>
-
+            <h3>目前持股</h3>
             <span
                 id="holdingCount"
                 class="section-count"
             >
                 0 檔
             </span>
-
         </div>
-
 
         <div
             id="holdingList"
@@ -239,27 +119,17 @@
     </section>
 
 
-    <!-- =========================
-         最近紀錄
-    ========================== -->
-
     <section class="records">
 
         <div class="section-title-row">
-
-            <h3>
-                最近紀錄
-            </h3>
-
+            <h3>最近紀錄</h3>
             <span
                 id="recordCount"
                 class="section-count"
             >
                 0 筆
             </span>
-
         </div>
-
 
         <div
             id="recordList"
@@ -273,15 +143,7 @@
 </main>
 
 
-
-<!-- =========================
-     新增 / 編輯紀錄
-========================== -->
-
-<div
-    id="modal"
-    class="modal"
->
+<div id="modal" class="modal">
 
     <div class="modal-content">
 
@@ -295,6 +157,7 @@
                 id="closeButton"
                 class="close-button"
                 type="button"
+                aria-label="關閉"
             >
                 ×
             </button>
@@ -304,38 +167,17 @@
 
         <form id="transactionForm">
 
-
-            <!-- 類型 -->
-
             <label for="type">
                 類型
             </label>
 
-            <select
-                id="type"
-                required
-            >
-
-                <option value="deposit">
-                    入金
-                </option>
-
-                <option value="withdraw">
-                    出金
-                </option>
-
-                <option value="buy">
-                    買入股票
-                </option>
-
-                <option value="sell">
-                    賣出股票
-                </option>
-
+            <select id="type" required>
+                <option value="deposit">入金</option>
+                <option value="withdraw">出金</option>
+                <option value="buy">買入股票</option>
+                <option value="sell">賣出股票</option>
             </select>
 
-
-            <!-- 股票名稱 -->
 
             <div id="stockNameField">
 
@@ -352,13 +194,28 @@
                     placeholder="例如：台積電"
                 >
 
-                <datalist id="stockSuggestions">
-                </datalist>
+                <datalist id="stockSuggestions"></datalist>
 
             </div>
 
 
-            <!-- 一般金額 / 買入金額 -->
+            <div id="buySharesField">
+
+                <label for="buyShares">
+                    買入股數
+                </label>
+
+                <input
+                    id="buyShares"
+                    type="number"
+                    min="1"
+                    step="1"
+                    inputmode="numeric"
+                    placeholder="例如：100"
+                >
+
+            </div>
+
 
             <div id="amountField">
 
@@ -372,6 +229,7 @@
                 <input
                     id="amount"
                     type="number"
+                    min="1"
                     step="1"
                     inputmode="numeric"
                     placeholder="例如：50000"
@@ -380,31 +238,77 @@
             </div>
 
 
-            <!-- 賣出損益 -->
+            <div id="sellSharesField">
 
-            <div id="pnlField">
-
-                <label for="pnl">
-                    這次賺 / 賠多少
+                <label for="sellShares">
+                    賣出股數
                 </label>
 
                 <input
-                    id="pnl"
+                    id="sellShares"
                     type="number"
+                    min="1"
                     step="1"
                     inputmode="numeric"
-                    placeholder="賺 2500 輸入 2500，賠 2500 輸入 -2500"
+                    placeholder="例如：30"
                 >
 
-                <p class="field-hint">
-                    正數代表獲利，例如 2500；負數代表虧損，例如 -2500。
-                    賣出會視為這檔股票目前的持股全部賣掉。
+                <p
+                    id="sellSharesHint"
+                    class="field-hint"
+                >
+                    系統會依目前平均成本自動算出這次賣掉的原始成本。
                 </p>
 
             </div>
 
 
-            <!-- 日期 -->
+            <div id="pnlField">
+
+                <label>
+                    這次是賺錢還是賠錢？
+                </label>
+
+                <div class="pnl-type-buttons">
+
+                    <button
+                        id="profitButton"
+                        class="pnl-type-button selected"
+                        type="button"
+                    >
+                        賺錢
+                    </button>
+
+                    <button
+                        id="lossButton"
+                        class="pnl-type-button"
+                        type="button"
+                    >
+                        賠錢
+                    </button>
+
+                </div>
+
+
+                <label for="pnlAmount">
+                    損益金額
+                </label>
+
+                <input
+                    id="pnlAmount"
+                    type="number"
+                    min="0"
+                    step="1"
+                    inputmode="numeric"
+                    placeholder="例如：2500"
+                >
+
+                <p class="field-hint">
+                    只要輸入正數即可，不需要輸入負號。
+                </p>
+
+            </div>
+
 
             <label for="date">
                 日期
@@ -416,8 +320,6 @@
                 required
             >
 
-
-            <!-- 備註 -->
 
             <label for="note">
                 備註
@@ -435,8 +337,7 @@
                 id="formError"
                 class="form-error"
                 hidden
-            >
-            </div>
+            ></div>
 
 
             <div class="form-buttons">
@@ -448,7 +349,6 @@
                 >
                     取消
                 </button>
-
 
                 <button
                     class="save-button"
@@ -466,15 +366,7 @@
 </div>
 
 
-
-<!-- =========================
-     資料管理
-========================== -->
-
-<div
-    id="manageModal"
-    class="modal"
->
+<div id="manageModal" class="modal">
 
     <div class="modal-content">
 
@@ -488,6 +380,7 @@
                 id="closeManageButton"
                 class="close-button"
                 type="button"
+                aria-label="關閉"
             >
                 ×
             </button>
@@ -505,7 +398,6 @@
                 備份 JSON
             </button>
 
-
             <button
                 id="csvButton"
                 class="secondary-button"
@@ -513,7 +405,6 @@
             >
                 匯出 CSV
             </button>
-
 
             <button
                 id="importButton"
@@ -523,14 +414,12 @@
                 匯入備份
             </button>
 
-
             <input
                 id="importFile"
                 type="file"
                 accept=".json,application/json"
                 hidden
             >
-
 
             <button
                 id="resetButton"
@@ -552,18 +441,15 @@
 </div>
 
 
-
-<!-- 提示訊息 -->
-
 <div
     id="toast"
     class="toast"
->
-</div>
+    role="status"
+    aria-live="polite"
+></div>
 
 
 <script src="app.js"></script>
 
 </body>
-
 </html>
