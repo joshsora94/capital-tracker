@@ -1,7 +1,7 @@
 {
   "name": "我的投資資產",
   "short_name": "投資資產",
-  "description": "簡單記錄入金、出金、股票買入與賣出的個人資產追蹤工具。",
+  "description": "記錄入金、出金、股票買入賣出與帳戶損益。",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
