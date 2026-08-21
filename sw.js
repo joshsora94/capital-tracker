@@ -1,5 +1,5 @@
 const CACHE_NAME =
-    "capital-tracker-v1";
+    "capital-tracker-v4-1";
 
 const APP_FILES = [
     "./",
