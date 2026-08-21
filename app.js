@@ -1,6 +1,4 @@
-console.log(
-    "Capital Tracker v3 啟動成功"
-);
+console.log("Capital Tracker v4 啟動成功");
 
 
 // ==========================
@@ -8,243 +6,151 @@ console.log(
 // ==========================
 
 const totalAssets =
-    document.getElementById(
-        "totalAssets"
-    );
-
+    document.getElementById("totalAssets");
 
 const profit =
-    document.getElementById(
-        "profit"
-    );
-
+    document.getElementById("profit");
 
 const returnRate =
-    document.getElementById(
-        "returnRate"
-    );
-
+    document.getElementById("returnRate");
 
 const totalDeposit =
-    document.getElementById(
-        "totalDeposit"
-    );
-
+    document.getElementById("totalDeposit");
 
 const totalWithdraw =
-    document.getElementById(
-        "totalWithdraw"
-    );
-
+    document.getElementById("totalWithdraw");
 
 const netDeposit =
-    document.getElementById(
-        "netDeposit"
-    );
-
+    document.getElementById("netDeposit");
 
 const cash =
-    document.getElementById(
-        "cash"
-    );
-
+    document.getElementById("cash");
 
 const stockValue =
-    document.getElementById(
-        "stockValue"
-    );
-
+    document.getElementById("stockValue");
 
 const holdingList =
-    document.getElementById(
-        "holdingList"
-    );
-
+    document.getElementById("holdingList");
 
 const holdingCount =
-    document.getElementById(
-        "holdingCount"
-    );
-
+    document.getElementById("holdingCount");
 
 const recordList =
-    document.getElementById(
-        "recordList"
-    );
-
+    document.getElementById("recordList");
 
 const recordCount =
-    document.getElementById(
-        "recordCount"
-    );
+    document.getElementById("recordCount");
 
 
 // Modal
 
 const modal =
-    document.getElementById(
-        "modal"
-    );
-
+    document.getElementById("modal");
 
 const modalTitle =
-    document.getElementById(
-        "modalTitle"
-    );
-
+    document.getElementById("modalTitle");
 
 const addButton =
-    document.getElementById(
-        "addButton"
-    );
-
+    document.getElementById("addButton");
 
 const closeButton =
-    document.getElementById(
-        "closeButton"
-    );
-
+    document.getElementById("closeButton");
 
 const cancelButton =
-    document.getElementById(
-        "cancelButton"
-    );
-
+    document.getElementById("cancelButton");
 
 const transactionForm =
-    document.getElementById(
-        "transactionForm"
-    );
-
+    document.getElementById("transactionForm");
 
 const formError =
-    document.getElementById(
-        "formError"
-    );
+    document.getElementById("formError");
 
 
 // 表單
 
 const typeInput =
-    document.getElementById(
-        "type"
-    );
-
+    document.getElementById("type");
 
 const amountField =
-    document.getElementById(
-        "amountField"
-    );
-
+    document.getElementById("amountField");
 
 const amountInput =
-    document.getElementById(
-        "amount"
-    );
-
+    document.getElementById("amount");
 
 const amountLabel =
-    document.getElementById(
-        "amountLabel"
-    );
-
+    document.getElementById("amountLabel");
 
 const stockNameField =
-    document.getElementById(
-        "stockNameField"
-    );
-
+    document.getElementById("stockNameField");
 
 const stockNameInput =
-    document.getElementById(
-        "stockName"
-    );
-
+    document.getElementById("stockName");
 
 const stockSuggestions =
-    document.getElementById(
-        "stockSuggestions"
-    );
+    document.getElementById("stockSuggestions");
 
+const buySharesField =
+    document.getElementById("buySharesField");
+
+const buySharesInput =
+    document.getElementById("buyShares");
+
+const sellSharesField =
+    document.getElementById("sellSharesField");
+
+const sellSharesInput =
+    document.getElementById("sellShares");
+
+const sellSharesHint =
+    document.getElementById("sellSharesHint");
 
 const pnlField =
-    document.getElementById(
-        "pnlField"
-    );
+    document.getElementById("pnlField");
 
+const profitButton =
+    document.getElementById("profitButton");
 
-const pnlInput =
-    document.getElementById(
-        "pnl"
-    );
+const lossButton =
+    document.getElementById("lossButton");
 
+const pnlAmountInput =
+    document.getElementById("pnlAmount");
 
 const dateInput =
-    document.getElementById(
-        "date"
-    );
-
+    document.getElementById("date");
 
 const noteInput =
-    document.getElementById(
-        "note"
-    );
+    document.getElementById("note");
 
 
 // 資料管理
 
 const manageButton =
-    document.getElementById(
-        "manageButton"
-    );
-
+    document.getElementById("manageButton");
 
 const manageModal =
-    document.getElementById(
-        "manageModal"
-    );
-
+    document.getElementById("manageModal");
 
 const closeManageButton =
-    document.getElementById(
-        "closeManageButton"
-    );
-
+    document.getElementById("closeManageButton");
 
 const backupButton =
-    document.getElementById(
-        "backupButton"
-    );
-
+    document.getElementById("backupButton");
 
 const csvButton =
-    document.getElementById(
-        "csvButton"
-    );
-
+    document.getElementById("csvButton");
 
 const importButton =
-    document.getElementById(
-        "importButton"
-    );
-
+    document.getElementById("importButton");
 
 const importFile =
-    document.getElementById(
-        "importFile"
-    );
-
+    document.getElementById("importFile");
 
 const resetButton =
-    document.getElementById(
-        "resetButton"
-    );
-
+    document.getElementById("resetButton");
 
 const toast =
-    document.getElementById(
-        "toast"
-    );
+    document.getElementById("toast");
 
 
 // ==========================
@@ -252,29 +158,20 @@ const toast =
 // ==========================
 
 const STORAGE_KEY =
-    "capital_tracker_transactions_v3";
-
-
-const OLD_KEYS = [
-
-    "capital_tracker_transactions_v2",
-
-    "transactions"
-
-];
-
+    "capital_tracker_transactions_v4";
 
 let transactions =
     loadTransactions();
 
-
 let editingId =
     null;
 
+let pnlType =
+    "profit";
 
 
 // ==========================
-// 載入 / 舊資料轉換
+// 載入資料
 // ==========================
 
 function loadTransactions() {
@@ -285,218 +182,34 @@ function loadTransactions() {
         );
 
 
-    if (current) {
+    if (!current) {
 
-        try {
-
-            const parsed =
-                JSON.parse(
-                    current
-                );
-
-
-            if (
-                Array.isArray(parsed)
-            ) {
-
-                return migrateTransactions(
-                    parsed
-                );
-
-            }
-
-        }
-
-        catch (error) {
-
-            console.error(
-                error
-            );
-
-        }
+        return [];
 
     }
 
 
-    for (
-        const key
-        of OLD_KEYS
-    ) {
+    try {
 
-        const oldData =
-            localStorage.getItem(
-                key
+        const parsed =
+            JSON.parse(
+                current
             );
 
 
-        if (!oldData) {
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
 
-            continue;
+    } catch (error) {
 
-        }
+        console.error(error);
 
-
-        try {
-
-            const parsed =
-                JSON.parse(
-                    oldData
-                );
-
-
-            if (
-                Array.isArray(parsed)
-            ) {
-
-                const migrated =
-                    migrateTransactions(
-                        parsed
-                    );
-
-
-                localStorage.setItem(
-                    STORAGE_KEY,
-                    JSON.stringify(
-                        migrated
-                    )
-                );
-
-
-                return migrated;
-
-            }
-
-        }
-
-        catch (error) {
-
-            console.error(
-                error
-            );
-
-        }
+        return [];
 
     }
 
-
-    return [];
-
 }
-
-
-
-// 舊版賣出資料：
-// amount = 賣回金額
-// cost = 成本
-//
-// 新版轉成：
-// pnl = amount - cost
-
-function migrateTransactions(
-    items
-) {
-
-    return items
-        .map(
-            function (item) {
-
-                const base = {
-
-                    id:
-                        Number(
-                            item.id
-                        ) ||
-                        Date.now(),
-
-                    type:
-                        item.type,
-
-                    stockName:
-                        String(
-                            item.stockName ||
-                            ""
-                        ).trim(),
-
-                    date:
-                        item.date ||
-                        getTodayString(),
-
-                    note:
-                        item.note ||
-                        ""
-
-                };
-
-
-                if (
-                    item.type ===
-                    "sell"
-                ) {
-
-                    let pnl;
-
-
-                    if (
-                        Number.isFinite(
-                            Number(
-                                item.pnl
-                            )
-                        )
-                    ) {
-
-                        pnl =
-                            Number(
-                                item.pnl
-                            );
-
-                    }
-
-                    else {
-
-                        pnl =
-                            (
-                                Number(
-                                    item.amount
-                                ) || 0
-                            )
-                            -
-                            (
-                                Number(
-                                    item.cost
-                                ) || 0
-                            );
-
-                    }
-
-
-                    return {
-
-                        ...base,
-
-                        pnl:
-                            pnl
-
-                    };
-
-                }
-
-
-                return {
-
-                    ...base,
-
-                    amount:
-                        Number(
-                            item.amount
-                        ) || 0
-
-                };
-
-            }
-        );
-
-}
-
 
 
 // ==========================
@@ -508,10 +221,8 @@ function getTodayString() {
     const today =
         new Date();
 
-
     const year =
         today.getFullYear();
-
 
     const month =
         String(
@@ -520,7 +231,6 @@ function getTodayString() {
             2,
             "0"
         );
-
 
     const day =
         String(
@@ -546,7 +256,6 @@ function setToday() {
 }
 
 
-
 // ==========================
 // 共用工具
 // ==========================
@@ -558,7 +267,6 @@ function formatMoney(
     const value =
         Number(number) || 0;
 
-
     const sign =
         value < 0
             ? "-"
@@ -566,23 +274,43 @@ function formatMoney(
 
 
     return (
-
         sign +
-
         "NT$ " +
-
         Math.abs(
-            Math.round(
-                value
-            )
+            Math.round(value)
         ).toLocaleString(
             "zh-TW"
         )
-
     );
 
 }
 
+
+function formatMoneyDecimal(
+    number
+) {
+
+    const value =
+        Number(number) || 0;
+
+
+    return (
+        "NT$ " +
+        value.toLocaleString(
+            "zh-TW",
+            {
+                minimumFractionDigits:
+                    Number.isInteger(value)
+                        ? 0
+                        : 2,
+
+                maximumFractionDigits:
+                    2
+            }
+        )
+    );
+
+}
 
 
 function formatSignedMoney(
@@ -612,7 +340,6 @@ function formatSignedMoney(
     );
 
 }
-
 
 
 function escapeHtml(
@@ -651,7 +378,6 @@ function escapeHtml(
 }
 
 
-
 function normalizeStockName(
     value
 ) {
@@ -661,7 +387,6 @@ function normalizeStockName(
     ).trim();
 
 }
-
 
 
 function saveTransactions() {
@@ -674,7 +399,6 @@ function saveTransactions() {
     );
 
 }
-
 
 
 function showToast(
@@ -708,7 +432,6 @@ function showToast(
         );
 
 }
-
 
 
 function setProfitClass(
@@ -754,6 +477,35 @@ function setProfitClass(
 }
 
 
+// ==========================
+// 損益類型
+// ==========================
+
+function setPnlType(
+    type
+) {
+
+    pnlType =
+        type;
+
+
+    profitButton
+        .classList
+        .toggle(
+            "selected",
+            type === "profit"
+        );
+
+
+    lossButton
+        .classList
+        .toggle(
+            "selected",
+            type === "loss"
+        );
+
+}
+
 
 // ==========================
 // 表單切換
@@ -768,10 +520,14 @@ function updateFormFields() {
     stockNameField.style.display =
         "none";
 
+    buySharesField.style.display =
+        "none";
 
     amountField.style.display =
         "block";
 
+    sellSharesField.style.display =
+        "none";
 
     pnlField.style.display =
         "none";
@@ -780,25 +536,22 @@ function updateFormFields() {
     amountLabel.textContent =
         "金額";
 
-
     amountInput.placeholder =
         "例如：50000";
 
 
-    // 買入
-
     if (
-        type ===
-        "buy"
+        type === "buy"
     ) {
 
         stockNameField.style.display =
             "block";
 
+        buySharesField.style.display =
+            "block";
 
         amountLabel.textContent =
             "花費金額";
-
 
         amountInput.placeholder =
             "例如：30000";
@@ -806,28 +559,27 @@ function updateFormFields() {
     }
 
 
-    // 賣出
-
     if (
-        type ===
-        "sell"
+        type === "sell"
     ) {
 
         stockNameField.style.display =
             "block";
 
-
         amountField.style.display =
             "none";
 
+        sellSharesField.style.display =
+            "block";
 
         pnlField.style.display =
             "block";
 
+        updateSellSharesHint();
+
     }
 
 }
-
 
 
 // ==========================
@@ -839,12 +591,10 @@ function clearFormError() {
     formError.hidden =
         true;
 
-
     formError.textContent =
         "";
 
 }
-
 
 
 function showFormError(
@@ -854,12 +604,10 @@ function showFormError(
     formError.textContent =
         message;
 
-
     formError.hidden =
         false;
 
 }
-
 
 
 // ==========================
@@ -871,33 +619,29 @@ function openAddModal() {
     editingId =
         null;
 
-
     modalTitle.textContent =
         "新增紀錄";
 
-
     transactionForm.reset();
-
 
     typeInput.value =
         "deposit";
 
-
     setToday();
 
+    setPnlType(
+        "profit"
+    );
 
     clearFormError();
 
-
     updateFormFields();
-
 
     modal.classList.add(
         "show"
     );
 
 }
-
 
 
 function openEditModal(
@@ -909,22 +653,17 @@ function openEditModal(
             transaction.id
         );
 
-
     modalTitle.textContent =
         "編輯紀錄";
-
 
     typeInput.value =
         transaction.type;
 
-
     dateInput.value =
         transaction.date;
 
-
     noteInput.value =
         transaction.note || "";
-
 
     stockNameInput.value =
         transaction.stockName || "";
@@ -932,14 +671,43 @@ function openEditModal(
 
     if (
         transaction.type ===
+        "buy"
+    ) {
+
+        buySharesInput.value =
+            transaction.shares;
+
+        amountInput.value =
+            transaction.amount;
+
+    }
+
+    else if (
+        transaction.type ===
         "sell"
     ) {
 
-        pnlInput.value =
-            transaction.pnl;
+        sellSharesInput.value =
+            transaction.shares;
 
-        amountInput.value =
-            "";
+
+        const pnl =
+            Number(
+                transaction.pnl
+            ) || 0;
+
+
+        setPnlType(
+            pnl < 0
+                ? "loss"
+                : "profit"
+        );
+
+
+        pnlAmountInput.value =
+            Math.abs(
+                pnl
+            );
 
     }
 
@@ -948,17 +716,12 @@ function openEditModal(
         amountInput.value =
             transaction.amount;
 
-        pnlInput.value =
-            "";
-
     }
 
 
     clearFormError();
 
-
     updateFormFields();
-
 
     modal.classList.add(
         "show"
@@ -967,26 +730,22 @@ function openEditModal(
 }
 
 
-
 function closeTransactionModal() {
 
     modal.classList.remove(
         "show"
     );
 
-
     editingId =
         null;
-
 
     clearFormError();
 
 }
 
 
-
 // ==========================
-// 時間排序
+// 排序
 // ==========================
 
 function sortTransactions(
@@ -1037,9 +796,13 @@ function sortTransactions(
 }
 
 
-
 // ==========================
 // 帳戶運算核心
+//
+// 股票採平均成本法：
+// 平均成本 = 持股成本 / 持有股數
+// 賣出成本 = 平均成本 × 賣出股數
+// 賣回現金 = 賣出成本 + 本次損益
 // ==========================
 
 function analyzeTransactions(
@@ -1049,18 +812,14 @@ function analyzeTransactions(
     let currentCash =
         0;
 
-
     let deposits =
         0;
-
 
     let withdrawals =
         0;
 
-
     const holdings =
         {};
-
 
     const derived =
         {};
@@ -1078,10 +837,7 @@ function analyzeTransactions(
     ) {
 
 
-        // =====================
         // 入金
-        // =====================
-
         if (
             transaction.type ===
             "deposit"
@@ -1102,12 +858,9 @@ function analyzeTransactions(
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
                         `${transaction.date} 有一筆入金金額不正確。`
-
                 };
 
             }
@@ -1116,20 +869,15 @@ function analyzeTransactions(
             currentCash +=
                 amount;
 
-
             deposits +=
                 amount;
-
 
             continue;
 
         }
 
 
-        // =====================
         // 出金
-        // =====================
-
         if (
             transaction.type ===
             "withdraw"
@@ -1150,12 +898,9 @@ function analyzeTransactions(
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
                         `${transaction.date} 有一筆出金金額不正確。`
-
                 };
 
             }
@@ -1167,12 +912,9 @@ function analyzeTransactions(
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
                         `${transaction.date} 出金 ${formatMoney(amount)}，但當時現金只有 ${formatMoney(currentCash)}。`
-
                 };
 
             }
@@ -1181,20 +923,15 @@ function analyzeTransactions(
             currentCash -=
                 amount;
 
-
             withdrawals +=
                 amount;
-
 
             continue;
 
         }
 
 
-        // =====================
         // 買入股票
-        // =====================
-
         if (
             transaction.type ===
             "buy"
@@ -1205,10 +942,14 @@ function analyzeTransactions(
                     transaction.stockName
                 );
 
-
             const amount =
                 Number(
                     transaction.amount
+                );
+
+            const shares =
+                Number(
+                    transaction.shares
                 );
 
 
@@ -1217,12 +958,9 @@ function analyzeTransactions(
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
                         `${transaction.date} 有一筆買入沒有股票名稱。`
-
                 };
 
             }
@@ -1237,12 +975,26 @@ function analyzeTransactions(
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
                         `${transaction.date} 的 ${stockName} 買入金額不正確。`
+                };
 
+            }
+
+
+            if (
+                !Number.isInteger(
+                    shares
+                )
+                ||
+                shares <= 0
+            ) {
+
+                return {
+                    ok: false,
+                    message:
+                        `${transaction.date} 的 ${stockName} 買入股數不正確。`
                 };
 
             }
@@ -1254,12 +1006,9 @@ function analyzeTransactions(
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
                         `${transaction.date} 買入 ${stockName} 需要 ${formatMoney(amount)}，但當時只有 ${formatMoney(currentCash)} 現金。`
-
                 };
 
             }
@@ -1278,14 +1027,23 @@ function analyzeTransactions(
                 holdings[
                     stockName
                 ] =
-                    0;
+                    {
+                        shares: 0,
+                        cost: 0
+                    };
 
             }
 
 
             holdings[
                 stockName
-            ] +=
+            ].shares +=
+                shares;
+
+
+            holdings[
+                stockName
+            ].cost +=
                 amount;
 
 
@@ -1294,10 +1052,7 @@ function analyzeTransactions(
         }
 
 
-        // =====================
         // 賣出股票
-        // =====================
-
         if (
             transaction.type ===
             "sell"
@@ -1308,6 +1063,10 @@ function analyzeTransactions(
                     transaction.stockName
                 );
 
+            const sellShares =
+                Number(
+                    transaction.shares
+                );
 
             const pnl =
                 Number(
@@ -1320,12 +1079,26 @@ function analyzeTransactions(
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
                         `${transaction.date} 有一筆賣出沒有股票名稱。`
+                };
 
+            }
+
+
+            if (
+                !Number.isInteger(
+                    sellShares
+                )
+                ||
+                sellShares <= 0
+            ) {
+
+                return {
+                    ok: false,
+                    message:
+                        `${transaction.date} 的 ${stockName} 賣出股數不正確。`
                 };
 
             }
@@ -1338,41 +1111,80 @@ function analyzeTransactions(
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
                         `${transaction.date} 的 ${stockName} 賣出損益格式不正確。`
-
                 };
 
             }
 
 
-            const holdingCost =
+            const holding =
                 holdings[
                     stockName
-                ] || 0;
+                ];
 
 
             if (
-                holdingCost <= 0
+                !holding
+                ||
+                holding.shares <= 0
+                ||
+                holding.cost <= 0
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
-                        `${transaction.date} 要賣出 ${stockName}，但當時沒有這檔股票的持股成本。`
-
+                        `${transaction.date} 要賣出 ${stockName}，但當時沒有這檔股票的持股。`
                 };
+
+            }
+
+
+            if (
+                sellShares >
+                holding.shares
+            ) {
+
+                return {
+                    ok: false,
+                    message:
+                        `${stockName} 當時只有 ${holding.shares.toLocaleString("zh-TW")} 股，不能賣出 ${sellShares.toLocaleString("zh-TW")} 股。`
+                };
+
+            }
+
+
+            const averageCost =
+                holding.cost /
+                holding.shares;
+
+
+            let soldCost;
+
+
+            if (
+                sellShares ===
+                holding.shares
+            ) {
+
+                soldCost =
+                    holding.cost;
+
+            }
+
+            else {
+
+                soldCost =
+                    averageCost *
+                    sellShares;
 
             }
 
 
             const proceeds =
-                holdingCost +
+                soldCost +
                 pnl;
 
 
@@ -1381,23 +1193,30 @@ function analyzeTransactions(
             ) {
 
                 return {
-
                     ok: false,
-
                     message:
-                        `${stockName} 的虧損不能超過原本的持股成本 ${formatMoney(holdingCost)}。`
-
+                        `${stockName} 這次虧損不能大於賣出部分的原始成本 ${formatMoney(soldCost)}。`
                 };
 
             }
 
 
-            // 賣出＝整檔清空
+            holding.shares -=
+                sellShares;
 
-            holdings[
-                stockName
-            ] =
-                0;
+
+            holding.cost -=
+                soldCost;
+
+
+            if (
+                holding.shares === 0
+            ) {
+
+                holding.cost =
+                    0;
+
+            }
 
 
             currentCash +=
@@ -1410,16 +1229,20 @@ function analyzeTransactions(
                 )
             ] =
                 {
+                    sellShares:
+                        sellShares,
 
-                    holdingCost:
-                        holdingCost,
+                    averageCost:
+                        averageCost,
+
+                    soldCost:
+                        soldCost,
 
                     pnl:
                         pnl,
 
                     proceeds:
                         proceeds
-
                 };
 
 
@@ -1429,21 +1252,13 @@ function analyzeTransactions(
 
 
         return {
-
             ok: false,
-
             message:
                 "發現無法辨識的紀錄類型。"
-
         };
 
     }
 
-
-
-    // =====================
-    // 剩餘持股成本
-    // =====================
 
     const currentStockCost =
         Object.values(
@@ -1452,7 +1267,7 @@ function analyzeTransactions(
         .reduce(
             function (
                 total,
-                cost
+                holding
             ) {
 
                 return (
@@ -1460,7 +1275,7 @@ function analyzeTransactions(
                     Math.max(
                         0,
                         Number(
-                            cost
+                            holding.cost
                         ) || 0
                     )
                 );
@@ -1470,27 +1285,15 @@ function analyzeTransactions(
         );
 
 
-    // 現在帳戶裡的東西
-
     const currentAssets =
         currentCash +
         currentStockCost;
 
 
-    // 真正放進帳戶的淨金額
-
     const netContribution =
         deposits -
         withdrawals;
 
-
-    /*
-        真正的總損益：
-
-        目前資產
-        + 已經拿出去的錢
-        - 曾經放進來的錢
-    */
 
     const totalProfit =
         currentAssets
@@ -1499,14 +1302,6 @@ function analyzeTransactions(
         -
         deposits;
 
-
-    /*
-        簡易總報酬率
-
-        用累積入金當分母，
-        避免大量出金後
-        淨投入接近 0 導致報酬率失真。
-    */
 
     const returnRate =
         deposits > 0
@@ -1520,7 +1315,6 @@ function analyzeTransactions(
 
 
     return {
-
         ok: true,
 
         deposits:
@@ -1552,11 +1346,9 @@ function analyzeTransactions(
 
         derived:
             derived
-
     };
 
 }
-
 
 
 // ==========================
@@ -1571,7 +1363,6 @@ function buildTransactionFromForm() {
     const type =
         typeInput.value;
 
-
     const date =
         dateInput.value;
 
@@ -1582,7 +1373,6 @@ function buildTransactionFromForm() {
             "請選擇日期。"
         );
 
-
         return null;
 
     }
@@ -1592,9 +1382,7 @@ function buildTransactionFromForm() {
 
         id:
             editingId === null
-
                 ? Date.now()
-
                 : editingId,
 
         type:
@@ -1612,16 +1400,11 @@ function buildTransactionFromForm() {
     };
 
 
-    // =====================
-    // 入金 / 出金 / 買入
-    // =====================
-
+    // 入金 / 出金
     if (
         type === "deposit"
         ||
         type === "withdraw"
-        ||
-        type === "buy"
     ) {
 
         const amount =
@@ -1642,7 +1425,6 @@ function buildTransactionFromForm() {
                 "請輸入大於 0 的正確金額。"
             );
 
-
             return null;
 
         }
@@ -1651,22 +1433,30 @@ function buildTransactionFromForm() {
         base.amount =
             amount;
 
+
+        return base;
+
     }
 
 
-    // =====================
-    // 股票名稱
-    // =====================
-
+    // 買入股票
     if (
         type === "buy"
-        ||
-        type === "sell"
     ) {
 
         const stockName =
             normalizeStockName(
                 stockNameInput.value
+            );
+
+        const shares =
+            Number(
+                buySharesInput.value
+            );
+
+        const amount =
+            Number(
+                amountInput.value
             );
 
 
@@ -1678,6 +1468,39 @@ function buildTransactionFromForm() {
                 "請輸入股票名稱。"
             );
 
+            return null;
+
+        }
+
+
+        if (
+            !Number.isInteger(
+                shares
+            )
+            ||
+            shares <= 0
+        ) {
+
+            showFormError(
+                "請輸入大於 0 的整數買入股數。"
+            );
+
+            return null;
+
+        }
+
+
+        if (
+            !Number.isFinite(
+                amount
+            )
+            ||
+            amount <= 0
+        ) {
+
+            showFormError(
+                "請輸入大於 0 的花費金額。"
+            );
 
             return null;
 
@@ -1687,64 +1510,116 @@ function buildTransactionFromForm() {
         base.stockName =
             stockName;
 
+        base.shares =
+            shares;
+
+        base.amount =
+            amount;
+
+
+        return base;
+
     }
 
 
-    // =====================
-    // 賣出損益
-    // =====================
-
+    // 賣出股票
     if (
         type === "sell"
     ) {
 
-        if (
-            pnlInput.value.trim()
-            === ""
-        ) {
-
-            showFormError(
-                "請輸入這次賣出賺了多少或賠了多少。"
+        const stockName =
+            normalizeStockName(
+                stockNameInput.value
             );
 
-
-            return null;
-
-        }
-
-
-        const pnl =
+        const shares =
             Number(
-                pnlInput.value
+                sellSharesInput.value
+            );
+
+        const pnlAmount =
+            Number(
+                pnlAmountInput.value
             );
 
 
         if (
-            !Number.isFinite(
-                pnl
-            )
+            stockName === ""
         ) {
 
             showFormError(
-                "損益格式不正確。"
+                "請輸入股票名稱。"
             );
-
 
             return null;
 
         }
 
+
+        if (
+            !Number.isInteger(
+                shares
+            )
+            ||
+            shares <= 0
+        ) {
+
+            showFormError(
+                "請輸入大於 0 的整數賣出股數。"
+            );
+
+            return null;
+
+        }
+
+
+        if (
+            pnlAmountInput.value.trim()
+            === ""
+            ||
+            !Number.isFinite(
+                pnlAmount
+            )
+            ||
+            pnlAmount < 0
+        ) {
+
+            showFormError(
+                "請輸入 0 或正數的損益金額。"
+            );
+
+            return null;
+
+        }
+
+
+        base.stockName =
+            stockName;
+
+        base.shares =
+            shares;
 
         base.pnl =
-            pnl;
+            pnlType ===
+            "loss"
+
+                ? -Math.abs(
+                    pnlAmount
+                )
+
+                : Math.abs(
+                    pnlAmount
+                );
+
+
+        return base;
 
     }
 
 
-    return base;
+    return null;
 
 }
-
 
 
 // ==========================
@@ -1771,8 +1646,6 @@ function saveFormTransaction() {
     let candidate;
 
 
-    // 新增
-
     if (
         editingId === null
     ) {
@@ -1784,9 +1657,6 @@ function saveFormTransaction() {
             ];
 
     }
-
-
-    // 編輯
 
     else {
 
@@ -1814,8 +1684,6 @@ function saveFormTransaction() {
     }
 
 
-    // 重新從頭驗證所有歷史資料
-
     const analysis =
         analyzeTransactions(
             candidate
@@ -1829,7 +1697,6 @@ function saveFormTransaction() {
         showFormError(
             analysis.message
         );
-
 
         return;
 
@@ -1850,17 +1717,12 @@ function saveFormTransaction() {
 
 
     showToast(
-
         wasEditing
-
             ? "已更新紀錄"
-
             : "已新增紀錄"
-
     );
 
 }
-
 
 
 // ==========================
@@ -1930,9 +1792,80 @@ function renderStockSuggestions() {
 }
 
 
+// ==========================
+// 賣出提示
+// ==========================
+
+function updateSellSharesHint() {
+
+    const analysis =
+        analyzeTransactions(
+            transactions
+        );
+
+
+    if (
+        !analysis.ok
+    ) {
+
+        sellSharesHint.textContent =
+            "系統會依目前平均成本自動算出這次賣掉的原始成本。";
+
+        return;
+
+    }
+
+
+    const stockName =
+        normalizeStockName(
+            stockNameInput.value
+        );
+
+
+    const holding =
+        analysis.holdings[
+            stockName
+        ];
+
+
+    if (
+        !stockName
+        ||
+        !holding
+        ||
+        holding.shares <= 0
+    ) {
+
+        sellSharesHint.textContent =
+            "系統會依目前平均成本自動算出這次賣掉的原始成本。";
+
+        return;
+
+    }
+
+
+    const averageCost =
+        holding.cost /
+        holding.shares;
+
+
+    sellSharesHint.textContent =
+
+        `目前持有 ${holding.shares.toLocaleString("zh-TW")} 股，`
+
+        +
+
+        `持股成本 ${formatMoney(holding.cost)}，`
+
+        +
+
+        `平均成本約 ${formatMoneyDecimal(averageCost)} / 股。`;
+
+}
+
 
 // ==========================
-// 持股
+// 持股 UI
 // ==========================
 
 function renderHoldings(
@@ -1948,14 +1881,16 @@ function renderHoldings(
             function (
                 [
                     name,
-                    cost
+                    holding
                 ]
             ) {
 
                 return (
-                    Number(
-                        cost
-                    ) > 0
+                    holding.shares >
+                    0
+                    &&
+                    holding.cost >
+                    0
                 );
 
             }
@@ -1987,10 +1922,8 @@ function renderHoldings(
         holdingList.className =
             "empty";
 
-
         holdingList.innerHTML =
             "尚無持股";
-
 
         return;
 
@@ -2008,19 +1941,31 @@ function renderHoldings(
             function (
                 [
                     name,
-                    cost
+                    holding
                 ]
             ) {
+
+                const averageCost =
+                    holding.cost /
+                    holding.shares;
+
 
                 return `
 
                     <div class="holding-item">
 
-                        <strong class="holding-name">
+                        <div>
 
-                            ${escapeHtml(name)}
+                            <strong class="holding-name">
+                                ${escapeHtml(name)}
+                            </strong>
 
-                        </strong>
+                            <div class="holding-meta">
+                                ${holding.shares.toLocaleString("zh-TW")} 股
+                                · 平均成本 ${formatMoneyDecimal(averageCost)}
+                            </div>
+
+                        </div>
 
 
                         <div class="holding-cost">
@@ -2030,7 +1975,7 @@ function renderHoldings(
                             </span>
 
                             <strong>
-                                ${formatMoney(cost)}
+                                ${formatMoney(holding.cost)}
                             </strong>
 
                         </div>
@@ -2045,7 +1990,6 @@ function renderHoldings(
         .join("");
 
 }
-
 
 
 // ==========================
@@ -2068,10 +2012,8 @@ function renderRecords(
         recordList.className =
             "empty";
 
-
         recordList.innerHTML =
             "尚無紀錄";
-
 
         return;
 
@@ -2138,20 +2080,15 @@ function renderRecords(
                 let typeName =
                     "";
 
-
                 let detail =
                     "";
-
 
                 let rightText =
                     "";
 
-
                 let rightClass =
                     "neutral";
 
-
-                // 入金
 
                 if (
                     transaction.type ===
@@ -2161,7 +2098,6 @@ function renderRecords(
                     typeName =
                         "入金";
 
-
                     rightText =
                         formatMoney(
                             transaction.amount
@@ -2169,8 +2105,6 @@ function renderRecords(
 
                 }
 
-
-                // 出金
 
                 else if (
                     transaction.type ===
@@ -2180,7 +2114,6 @@ function renderRecords(
                     typeName =
                         "出金";
 
-
                     rightText =
                         formatMoney(
                             transaction.amount
@@ -2188,8 +2121,6 @@ function renderRecords(
 
                 }
 
-
-                // 買入
 
                 else if (
                     transaction.type ===
@@ -2201,9 +2132,16 @@ function renderRecords(
 
 
                     detail =
+
                         ` · ${escapeHtml(
                             transaction.stockName
-                        )}`;
+                        )}`
+
+                        +
+
+                        ` · ${Number(
+                            transaction.shares
+                        ).toLocaleString("zh-TW")} 股`;
 
 
                     rightText =
@@ -2213,8 +2151,6 @@ function renderRecords(
 
                 }
 
-
-                // 賣出
 
                 else if (
                     transaction.type ===
@@ -2271,8 +2207,12 @@ function renderRecords(
 
                             +
 
-                            ` · 原成本 ${formatMoney(
-                                derived.holdingCost
+                            ` · ${derived.sellShares.toLocaleString("zh-TW")} 股`
+
+                            +
+
+                            ` · 成本 ${formatMoney(
+                                derived.soldCost
                             )}`
 
                             +
@@ -2306,7 +2246,6 @@ function renderRecords(
 
                     <div class="record-item">
 
-
                         <div class="record-info">
 
                             <strong>
@@ -2314,15 +2253,11 @@ function renderRecords(
                             </strong>
 
                             <p>
-
                                 ${escapeHtml(
                                     transaction.date
                                 )}
-
                                 ${detail}
-
                                 ${noteText}
-
                             </p>
 
                         </div>
@@ -2333,9 +2268,7 @@ function renderRecords(
                             <strong
                                 class="${rightClass}"
                             >
-
                                 ${rightText}
-
                             </strong>
 
 
@@ -2348,7 +2281,6 @@ function renderRecords(
                                 >
                                     編輯
                                 </button>
-
 
                                 <button
                                     type="button"
@@ -2374,7 +2306,6 @@ function renderRecords(
 }
 
 
-
 // ==========================
 // 更新首頁
 // ==========================
@@ -2394,7 +2325,6 @@ function updateUI() {
         console.error(
             analysis.message
         );
-
 
         return;
 
@@ -2490,8 +2420,10 @@ function updateUI() {
 
     renderStockSuggestions();
 
-}
 
+    updateSellSharesHint();
+
+}
 
 
 // ==========================
@@ -2580,7 +2512,6 @@ function deleteTransaction(
 }
 
 
-
 // ==========================
 // JSON 備份
 // ==========================
@@ -2593,14 +2524,11 @@ function downloadTextFile(
 
     const blob =
         new Blob(
-
             [text],
-
             {
                 type:
                     type
             }
-
         );
 
 
@@ -2618,7 +2546,6 @@ function downloadTextFile(
 
     link.href =
         url;
-
 
     link.download =
         filename;
@@ -2649,7 +2576,6 @@ function downloadTextFile(
 }
 
 
-
 function exportBackup() {
 
     const data = {
@@ -2658,7 +2584,7 @@ function exportBackup() {
             "Capital Tracker",
 
         version:
-            3,
+            4,
 
         exportedAt:
             new Date()
@@ -2692,9 +2618,8 @@ function exportBackup() {
 }
 
 
-
 // ==========================
-// CSV 匯出
+// CSV
 // ==========================
 
 function csvEscape(
@@ -2725,7 +2650,6 @@ function csvEscape(
 }
 
 
-
 function exportCsv() {
 
     const analysis =
@@ -2742,11 +2666,13 @@ function exportCsv() {
 
         "股票名稱",
 
+        "股數",
+
         "金額",
 
         "股票損益",
 
-        "賣出時成本",
+        "賣出成本",
 
         "賣回現金",
 
@@ -2798,6 +2724,9 @@ function exportCsv() {
                     transaction.stockName ||
                     "",
 
+                    transaction.shares ||
+                    "",
+
                     transaction.type ===
                     "sell"
 
@@ -2814,7 +2743,7 @@ function exportCsv() {
 
                     derived
 
-                        ? derived.holdingCost
+                        ? derived.soldCost
 
                         : "",
 
@@ -2885,9 +2814,8 @@ function exportCsv() {
 }
 
 
-
 // ==========================
-// 匯入備份
+// 匯入
 // ==========================
 
 function importBackupFile(
@@ -2933,15 +2861,9 @@ function importBackupFile(
                 }
 
 
-                const migrated =
-                    migrateTransactions(
-                        imported
-                    );
-
-
                 const analysis =
                     analyzeTransactions(
-                        migrated
+                        imported
                     );
 
 
@@ -2968,7 +2890,7 @@ function importBackupFile(
                 const confirmed =
                     confirm(
 
-                        `備份共有 ${migrated.length} 筆紀錄。\n\n匯入後會取代目前資料，確定嗎？`
+                        `備份共有 ${imported.length} 筆紀錄。\n\n匯入後會取代目前資料，確定嗎？`
 
                     );
 
@@ -2983,7 +2905,7 @@ function importBackupFile(
 
 
                 transactions =
-                    migrated;
+                    imported;
 
 
                 saveTransactions();
@@ -3009,7 +2931,7 @@ function importBackupFile(
 
 
                 alert(
-                    "這不是有效的 Capital Tracker JSON 備份。"
+                    "這不是有效的 Capital Tracker v4 JSON 備份。"
                 );
 
             }
@@ -3033,9 +2955,8 @@ function importBackupFile(
 }
 
 
-
 // ==========================
-// 清空資料
+// 清空
 // ==========================
 
 function resetAllData() {
@@ -3081,19 +3002,6 @@ function resetAllData() {
     );
 
 
-    OLD_KEYS.forEach(
-        function (
-            key
-        ) {
-
-            localStorage.removeItem(
-                key
-            );
-
-        }
-    );
-
-
     updateUI();
 
 
@@ -3107,7 +3015,6 @@ function resetAllData() {
 }
 
 
-
 // ==========================
 // 管理 Modal
 // ==========================
@@ -3119,7 +3026,6 @@ function closeManageModal() {
     );
 
 }
-
 
 
 // ==========================
@@ -3139,12 +3045,40 @@ typeInput.addEventListener(
 );
 
 
+stockNameInput.addEventListener(
+    "input",
+    updateSellSharesHint
+);
+
+
+profitButton.addEventListener(
+    "click",
+    function () {
+
+        setPnlType(
+            "profit"
+        );
+
+    }
+);
+
+
+lossButton.addEventListener(
+    "click",
+    function () {
+
+        setPnlType(
+            "loss"
+        );
+
+    }
+);
+
 
 addButton.addEventListener(
     "click",
     openAddModal
 );
-
 
 
 closeButton.addEventListener(
@@ -3153,12 +3087,10 @@ closeButton.addEventListener(
 );
 
 
-
 cancelButton.addEventListener(
     "click",
     closeTransactionModal
 );
-
 
 
 modal.addEventListener(
@@ -3180,7 +3112,6 @@ modal.addEventListener(
 );
 
 
-
 transactionForm.addEventListener(
     "submit",
     function (
@@ -3196,10 +3127,7 @@ transactionForm.addEventListener(
 );
 
 
-
-// ==========================
 // 編輯 / 刪除
-// ==========================
 
 recordList.addEventListener(
     "click",
@@ -3285,10 +3213,7 @@ recordList.addEventListener(
 );
 
 
-
-// ==========================
 // 資料管理
-// ==========================
 
 manageButton.addEventListener(
     "click",
@@ -3302,12 +3227,10 @@ manageButton.addEventListener(
 );
 
 
-
 closeManageButton.addEventListener(
     "click",
     closeManageModal
 );
-
 
 
 manageModal.addEventListener(
@@ -3329,19 +3252,16 @@ manageModal.addEventListener(
 );
 
 
-
 backupButton.addEventListener(
     "click",
     exportBackup
 );
 
 
-
 csvButton.addEventListener(
     "click",
     exportCsv
 );
-
 
 
 importButton.addEventListener(
@@ -3352,7 +3272,6 @@ importButton.addEventListener(
 
     }
 );
-
 
 
 importFile.addEventListener(
@@ -3379,16 +3298,14 @@ importFile.addEventListener(
 );
 
 
-
 resetButton.addEventListener(
     "click",
     resetAllData
 );
 
 
-
 // ==========================
-// PWA Service Worker
+// PWA
 // ==========================
 
 if (
@@ -3426,15 +3343,16 @@ if (
 }
 
 
-
 // ==========================
 // 啟動
 // ==========================
 
 setToday();
 
+setPnlType(
+    "profit"
+);
 
 updateFormFields();
-
 
 updateUI();
